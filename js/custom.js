@@ -52,8 +52,59 @@ $(document).ready(function(){
 
   $('#font-family').select2();
 
-  
+  $('.fonts-char, .common-char, .img-char').attr('style', 'display:none!important');
 
+
+
+  newCanvas(0);
+  
+  $('#stage').on('click', '.add-canvas', function(){
+    
+    let newIndex = canvases.length;
+    
+    let $canvaWrapper = $("<div>");
+    $canvaWrapper.addClass("canvas-wrapper");    
+    $canvaWrapper.attr("data-index", newIndex);  
+    
+    let $canva = $("<canvas>");
+    $canva.css( "display", "none" );
+    $canva.attr( "id", "canvas-element-" + newIndex );
+    
+    let $btnRemove = $('<button class="remove-canvas">');
+    $btnRemove.append('<i class="fa fa-times">');
+     
+    // let $btnClone = $('<button class="clone-canvas">');
+    // $btnClone.append('<i class="fa fa-clone">');
+    
+    $canvaWrapper.append($canva);
+    $canvaWrapper.append($btnRemove);
+    // $canvaWrapper.append($btnClone);
+
+    $canvaWrapper.insertBefore('.add-canvas');
+    
+    $canva.fadeIn( "fast", function(){
+      
+      newCanvas(newIndex);
+      
+    });
+    
+
+       
+  });
+      
+  $('#stage').on('click', '.remove-canvas', function(){
+         
+      let index = parseInt($(this).parents(".canvas-wrapper").attr("data-index"));
+    
+      $(this).parents(".canvas-wrapper").hide();
+      
+      delete canvases[index];
+
+    
+    });
+
+    
+  
 })
 
 // ======================================
@@ -814,6 +865,7 @@ $('.create-text-btn').click(function() {
     canvas.renderAll()
   })
 
+
   $('#b').click(function(){
     var dataUrl = canvas.toDataURL({
         format:'png',
@@ -856,13 +908,13 @@ $('.create-text-btn').click(function() {
   
 function bindCanvas(canvas){
     canvas.on('selection:created', function(o){
-      console.log(o.selected[0].canvas)
     let canvasId = o.selected[0].canvas.getElement().id;
     
     for(let i=0; i < canvases.length; i++){
       if(canvases[i] == o.selected[0].canvas){
         currentCanvasIndex = i;
-        console.log(canvases[i])        
+        console.log(canvas.getActiveObject().get('type'))
+        // console.log(canvases[i])        
       }
       else{
         canvases[i].discardActiveObject().renderAll();
@@ -879,52 +931,7 @@ function bindCanvas(canvas){
 
 jQuery(function(){
   
-  newCanvas(0);
-  
-  $('#stage').on('click', '.add-canvas', function(){
     
-    let newIndex = canvases.length;
-    
-    let $canvaWrapper = $("<div>");
-    $canvaWrapper.addClass("canvas-wrapper");    
-    $canvaWrapper.attr("data-index", newIndex);  
-    
-    let $canva = $("<canvas>");
-    $canva.css( "display", "none" );
-    $canva.attr( "id", "canvas-element-" + newIndex );
-    
-    let $btnRemove = $('<button class="remove-canvas">');
-    $btnRemove.append('<i class="fa fa-times">');
-     
-    // let $btnClone = $('<button class="clone-canvas">');
-    // $btnClone.append('<i class="fa fa-clone">');
-    
-    $canvaWrapper.append($canva);
-    $canvaWrapper.append($btnRemove);
-    // $canvaWrapper.append($btnClone);
-
-    $canvaWrapper.insertBefore('.add-canvas');
-    
-    $canva.fadeIn( "fast", function(){
-      
-      newCanvas(newIndex);
-      
-    });
-    
-
-       
-  });
-      
-  $('#stage').on('click', '.remove-canvas', function(){
-         
-      let index = parseInt($(this).parents(".canvas-wrapper").attr("data-index"));
-    
-      $(this).parents(".canvas-wrapper").hide();
-      
-      delete canvases[index];
-
-    
-    });  
   
 });
 

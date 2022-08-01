@@ -26,12 +26,12 @@ $url = basename($_SERVER['PHP_SELF']);
                     </div>
 
                     <div class='d-flex align-items-center'>
-                        <span aria-haspopup="true" class="me-2" id="color-control">
+                        <span aria-haspopup="true" class="me-2 common-char" id="color-control">
                             <div class="d-flex" tabindex="0">
                                 <input type="color" id="fill-color" class='colors' size="10" value=''>
                             </div>
                         </span>
-                        <span class="d-flex">
+                        <span class="d-flex fonts-char">
                             <select id="font-family" class='text-white px-2 ms-2 rounded py-1' style='width: 200px'>
                                 <!-- <option value="sans-serif" selected>Sans serif</option>
                                 <option value="serif">Serif</option>
@@ -39,7 +39,7 @@ $url = basename($_SERVER['PHP_SELF']);
                                 <option value="Poppins-Regular">Poppins</option> -->
                             </select>
                         </span>
-                        <span class="d-flex">
+                        <span class="d-flex fonts-char">
                             <select id="text-align" class='text-white px-2 ms-2 rounded py-1'>
                                 <option value="left" selected>Left</option>
                                 <option value="center">Center</option>
@@ -47,7 +47,7 @@ $url = basename($_SERVER['PHP_SELF']);
                                 <option value="justify">Justify</option>
                             </select>
                         </span>
-                        <span class='text-font-size rounded ms-2'>
+                        <span class='text-font-size rounded ms-2 fonts-char'>
                             <div class="d-flex align-items-center">
                                 <div class="">
                                     <input type="text" id='text-font-size' autocomplete="off" min="5"
@@ -87,7 +87,7 @@ $url = basename($_SERVER['PHP_SELF']);
                             <input type='checkbox' name='fonttype' id="text-cmd-overline"> Overline -->
 
                             <div class="">
-                                <span class='position-relative'>
+                                <span class='position-relative fonts-char'>
                                     <button type="button" class="fonttype controller-btn">
                                         <span icon="bold" aria-hidden="true" class="textChar1">
                                             <svg stroke="currentColor" fill="currentColor" stroke-width="0"
@@ -116,7 +116,7 @@ $url = basename($_SERVER['PHP_SELF']);
                                         </div>
                                     </div>
                                 </span>
-                                <button type="button" class="fonttype">
+                                <button type="button" class="fonttype fonts-char">
                                     <span icon="bold" aria-hidden="true" class="bold">
                                         <svg data-icon="bold" width="16" height="16" viewBox="0 0 16 16">
                                             <path
@@ -125,7 +125,7 @@ $url = basename($_SERVER['PHP_SELF']);
                                         </svg>
                                     </span>
                                 </button>
-                                <button type="button" class="fonttype">
+                                <button type="button" class="fonttype fonts-char">
                                     <span icon="italic" aria-hidden="true" class="italic">
                                         <svg data-icon="italic" width="16" height="16" viewBox="0 0 16 16">
                                             <path
@@ -134,7 +134,7 @@ $url = basename($_SERVER['PHP_SELF']);
                                         </svg>
                                     </span>
                                 </button>
-                                <button type="button" class="fonttype">
+                                <button type="button" class="fonttype fonts-char">
                                     <span icon="underline" aria-hidden="true" class="underline">
                                         <svg data-icon="underline" width="16" height="16" viewBox="0 0 16 16">
                                             <path
@@ -143,7 +143,7 @@ $url = basename($_SERVER['PHP_SELF']);
                                         </svg>
                                     </span>
                                 </button>
-                                <span class='position-relative'>
+                                <span class='position-relative common-char'>
                                     <button type="button" class="controller-btn rounded py-1">
                                         <span icon="left-join" aria-hidden="true" tabindex="-1" class="">
                                             <svg data-icon="left-join" width="16" height="16" viewBox="0 0 16 16">
@@ -282,7 +282,7 @@ $url = basename($_SERVER['PHP_SELF']);
                                         </div>
                                     </div>
                                 </span>
-                                <span class='position-relative'>
+                                <span class='position-relative img-char'>
                                     <button type="button" class="controller-btn rounded py-1">
                                         Flip
                                     </button>
@@ -300,9 +300,11 @@ $url = basename($_SERVER['PHP_SELF']);
                                         </div>
                                     </div>
                                 </span>
-                                <button id=cropA>Crop Obejct</button>
-                                <button id=cropB>Crop</button>
-                                <button id=done>Done</button>
+                                <span class='img-char'>
+                                    <button id=cropA>Crop Obejct</button>
+                                    <button id=cropB>Crop</button>
+                                    <button id=done>Done</button>
+                                </span>
                             </div>
                         </span>
                     </div>
