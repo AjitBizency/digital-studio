@@ -52,7 +52,7 @@ $(document).ready(function(){
 
   $('#font-family').select2();
 
-  $('.fonts-char, .common-char, .img-char').attr('style', 'display:none!important');
+  $('.textbox-char, .common-char, .image-char').attr('style', 'display:none!important');
 
 
 
@@ -116,6 +116,7 @@ function newCanvas(newIndex){
   
   let canvas = new fabric.Canvas('canvas-element-' + newIndex, {
     selection: true,
+    backgroundColor: '#ffffff'
   });
   // canvas Selector
   fabric.Object.prototype.set({
@@ -373,7 +374,7 @@ $('#cloneSelected').click(function() {
   // ========copying selection============
     canvas.getActiveObject().clone(function(cloned) {
       _clipboard = cloned;
-      console.log(_clipboard)
+      // console.log(_clipboard)
     });
 
     // ========pasting selection============
@@ -411,7 +412,7 @@ var input_slider = $(".effects_input");
 input_slider.on('input', function(event) {
   var output = $(this).parent().siblings().find('input');
   output.val(event.target.value);
-  console.log($(this).attr('id'))
+  // console.log($(this).attr('id'))
   if ($(this).attr('id') == 'shadow-blur') {
     canvas.getActiveObject().shadow.blur = event.target.value
   }
@@ -612,7 +613,7 @@ fonts.forEach(function(font) {
 // When a button is clicked, get the font name, load the font, and set the new font family.
 $('#font-family').on('select2:select', function (e) {
   var data = e.params.data;
-  console.log(data.id)
+  // console.log(data.id)
   // Load fonts when called using Font Face Observer
   Promise.all(
     [data.id].map(font => new FontFaceObserver(font).load())
@@ -669,7 +670,7 @@ $("#addFonts").change(function() {
   $(document).on('click', '.add-elements',function(){
     var stroke_width = parseInt($(this).attr('strokeWidth'));
     var fill_color = $(this).attr('fill');
-    console.log(canvas)
+    // console.log(canvas)
     if ($(this).hasClass('square')) {
       
       const rect = new fabric.Rect({
@@ -684,7 +685,6 @@ $("#addFonts").change(function() {
       canvas.add(rect);
       canvas.centerObject(rect); 
       canvas.setActiveObject(rect);
-      console.log("point")
     }
     else if ($(this).hasClass('circle')) {
       const circle = new fabric.Circle({
@@ -748,8 +748,28 @@ $('.create-text-btn').click(function() {
   save();
 });
 
+  canvas.on('selection:created', function() {
+    var type = canvas.getActiveObject().type;
+    $('.textbox-char, .common-char, .image-char').attr('style', 'display:none!important');
+    $('.'+type+'-char').attr('style',null);
+    $('.common-char').attr('style',null)
+  })
+  canvas.on('selection:updated', function() {
+    var type = canvas.getActiveObject().type;
+    $('.textbox-char, .common-char, .image-char').attr('style', 'display:none!important');
+    $('.'+type+'-char').attr('style',null);
+    $('.common-char').attr('style',null)
+  })
+  canvas.on('selection:cleared', function() {
+    $('.textbox-char, .common-char, .image-char').attr('style', 'display:none!important');
+  })
 
-
+  $('.canvas-wrapper').on('click', function() {
+    canvas.discardActiveObject().renderAll() 
+    }).children().click(function(){
+      return false;
+  })
+  
   // undo and redo buttons
   $('#undo').click(function() {
     replay(undo, redo, '#redo', this);
@@ -798,7 +818,7 @@ $('.create-text-btn').click(function() {
 
     object = canvas.getActiveObject();
     canvas.discardActiveObject()
-    console.log(object.type)
+    // console.log(object.type)
     // if(object.type == "image") {
       object.set('selectable', false)
       canvas.renderAll();
@@ -909,11 +929,10 @@ $('.create-text-btn').click(function() {
 function bindCanvas(canvas){
     canvas.on('selection:created', function(o){
     let canvasId = o.selected[0].canvas.getElement().id;
-    
     for(let i=0; i < canvases.length; i++){
       if(canvases[i] == o.selected[0].canvas){
         currentCanvasIndex = i;
-        console.log(canvas.getActiveObject().get('type'))
+        // console.log(canvas.getActiveObject().get('type'))
         // console.log(canvases[i])        
       }
       else{
@@ -948,7 +967,7 @@ function startup() {
   });
 }
 function updateFirst(event) {
-  console.log(load_canvas)
+  // console.log(load_canvas)
   if($(this).attr('id') == 'fill-color') {
     load_canvas.getActiveObject().set("fill", event.target.value);
   }

@@ -2,8 +2,8 @@
 ?>
 
 <div class=''>
-    <h6 class='text-white'>Do you want to upload your own images ? </h6>
-    <form action="" class='mb-5'>
+    <h6 class='text-white text-center'>Do you want to upload images ? </h6>
+    <form action="" class='my-5 border rounded p-3'>
         <input type="file" value="Add new image" id="addPhoto">
     </form>
         <ul class='p-0 mb-0 grid-container2 list'>
