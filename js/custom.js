@@ -1,6 +1,7 @@
 var canvases = [];
 var currentCanvasIndex = 0;
 
+var devicePixelRatio = window.devicePixelRatio || 1;
 var load_canvas;
 
 var chevron_input_value;
@@ -23,6 +24,10 @@ var f = fabric.Image.filters;
 // ========== Functions for Studio ===========================
 $(document).ready(function(){
 
+  // for testing purpose getting dpi of screen
+  dpi_x = document.getElementById('testdiv').offsetWidth * devicePixelRatio;
+  dpi_y = document.getElementById('testdiv').offsetHeight * devicePixelRatio;
+  console.log(dpi_x, dpi_y);
 
   $(".left-menu-icon").children().children().click(function() {
       if ($(this).hasClass("remove-search-bar")) {
@@ -288,7 +293,14 @@ function changePhoto(input) {
     var reader = new FileReader();
     reader.onload = function(e) {
       var source = e.target.result;
-      $(".list").append("<li class='mb-3 add-elements img'><img src=" + source + " width='100%' class='rounded'></li>")
+      $(".list").append("<li class='mb-3 add-elements img'><img src=" + source + " width='100%' class='rounded upload-img'></li>");
+      let img = new Image();
+      img.src = source;
+      img.decode().then(() => {
+        let width = img.width;
+        let height = img.height;
+        console.log(width, height)
+      });
     }
     reader.readAsDataURL(input.files[0]);
   }

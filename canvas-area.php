@@ -473,3 +473,5 @@ $url = basename($_SERVER['PHP_SELF']);
         </div>
     </div>
 </div>
+
+<div id='testdiv' style='height: 1in; left: -100%; position: absolute; top: -100%; width: 1in; visibility:hidden;'></div>
