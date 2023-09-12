@@ -1,4 +1,7 @@
+
 import SidebarContainer from '../sidebarContainer/SidebarContainer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 import './SidebarPanel.css'
 
@@ -7,7 +10,10 @@ function SidebarPanel(){
         <div className='sidebarPanel'>
             <div className='sidebarTab'>
                 <ul>
-                    <li>Templates</li>
+                    <li>
+                        <FontAwesomeIcon icon={['fab', 'apple']} />
+                        
+                        Templates</li>
                     <li>Text</li>
                     <li>Photos</li>
                     <li>Icons</li>

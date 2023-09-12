@@ -8,7 +8,7 @@ function SidebarContainer(){
                 <div className='box box1'>Text</div>
                 <div className='box box1'>Photos</div>
                 <div className='box box1'>Icons</div>
-            </div>d
+            </div>
         </div>
     );
 }
